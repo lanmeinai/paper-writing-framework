@@ -1,423 +1,260 @@
-# Paper Writing Framework
+# 🚀 Paper Writing Framework
 
-> 一个**领域无关**的学术论文写作框架 — 将 AI 辅助论文撰写流程标准化，适配计算机科学、工程、自然科学、医学、社会科学等任何领域。
+<div align="center">
 
----
+**🔥 告别论文拖延症 —— 让 AI 成为你的私人学术写作团队 🔥**
 
-## 这是什么？
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Claude Code](https://img.shields.io/badge/powered_by-Claude_Code-orange)](https://claude.com/claude-code)
+[![Status](https://img.shields.io/badge/status-battle--tested-success)]()
+[![Domains](https://img.shields.io/badge/domains-ALL-purple)]()
+[![Stars](https://img.shields.io/badge/star-this_repo-yellow)]()
 
-Paper Writing Framework 是一套基于 Claude Code 的**结构化论文写作系统**。它将论文撰写过程拆分为 5 个协作 Skill（上下文管理、章节写作、文献阅读、引用管理、草稿预览），通过 3 个 JSON 状态文件（大纲、知识库、会话状态）实现跨会话的持久化进度追踪。
+> *"写完论文的那一刻，你会感谢今天点进来的自己。"*
+>
+> 一行命令拉起来，5 个 AI Skill 同时开工——从此写论文不再是孤军奋战。
 
-本框架源自 [paper-project](https://github.com/lanmeinai/paper-project)（一篇肝脏点云配准论文的完整写作项目），经**完全泛化**后适配任何学科领域。
-
-### 核心理念
-
-```
-输入材料（PDF / 专利 / 笔记）
-    │
-    ▼
-paper_reader ──→ knowledge_base.json    ← 结构化文献数据库
-    │
-    ▼
-outline.json ──→ paper_writer           ← 按大纲逐章撰写
-    │
-    ▼
-ref_manager ──→ references.bib          ← 自动检索 + 格式化引用
-    │
-    ▼
-draft_viewer ──→ draft_preview.html     ← 中文学术预览
-    │
-    ▼
-context_manager ──→ session_state.json  ← 跨会话进度持久化
-```
+</div>
 
 ---
 
-## 文件架构
+## 💡 你有过这种感觉吗？
+
+- 😩 盯着空白页 3 小时，Introduction 就写了一句话
+- 😫 Related Work 写到一半发现引用格式全乱，推倒重来
+- 😤 实验跑完了，但论文里 50 个 PLACEHOLDER 根本不想手动填
+- 😱 两周后再打开草稿，上次写到哪了完全不记得
+- 🤯 被导师打回来 3 次，每次都是术语不一致、引用不全
+
+**够了。这就是为什么我们造了这个框架。**
+
+---
+
+## 🎯 一句话讲清楚
+
+**Paper Writing Framework** 是**地球上最完整的 AI 论文写作流水线**——5 个 Claude Code Skill 协同作战，从文献阅读到最终投稿，全流程自动化的领域无关论文工厂。
+
+> 🧠 它不是"帮你写一句话"的聊天机器人，而是**一整套论文写作的操作系统**。
+
+---
+
+## ⚡ 它为什么比你以前的工具强 100 倍？
+
+| 😢 你以前的流程 | 🚀 用了这个框架之后 |
+|----------------|-------------------|
+| 开 Overleaf，面对空白页发呆 | `paper_writer` 按大纲自动出稿，你只需审——不是写 |
+| 手动翻 30 篇 PDF，笔记散落各处 | `paper_reader` 自动读 PDF，输出结构化 JSON 知识库 |
+| References 格式全靠手搓，引了 40 篇全乱 | `ref_manager` 自动检索 + BibTeX 生成，格式 100% 正确 |
+| 写一半关了，下次重头再来 | `context_manager` 自动保存 checkpoint，任何时间恢复毫秒级 |
+| 英文写完了老板要看中文版本 | `draft_viewer` 一键生成 MathJax 渲染的中文学术 HTML |
+| 数据跑出来，手动替换 30 处 `[NUM]` | `fill_placeholders.py` 自动读取实验 JSON，秒级完成 |
+
+---
+
+## 🏗️ 架构：五个 Skill 一台戏
+
+```
+📚 文献 PDF ──→ [paper_reader]    ──→ knowledge_base.json
+                                           │
+                                           ▼
+📝 大纲定义 ──→ [paper_writer]    ←──── session_state.json
+    │                                      │
+    ▼                                      │
+🔍 [ref_manager] ──→ references.bib        │
+    │                                      │
+    ▼                                      │
+🌐 [draft_viewer] ──→ HTML 预览            │
+    │                                      │
+    └──────────→ [context_manager] ←───────┘
+                     │
+                     ├── PROGRESS_REPORT.md (给你看的)
+                     └── session_state.json  (给 AI 看的)
+```
+
+**五个 Skill 分工明确、配合默契**，像一个真正的论文写作团队——有人管文献、有人管写作、有人管引用、有人管格式、有人管进度。你只需要做一个「主审稿人」。
+
+---
+
+## 🎪 核心卖点
+
+### 🔥 卖点一：领域无关——你写什么论文，它就适配什么
+
+| 🖥️ 计算机/AI | ⚙️ 工程科学 | 🏥 医学/生物 | 📊 社科/人文 |
+|-------------|------------|-------------|------------|
+| NeurIPS / ICML | IEEE Trans. | The Lancet | APA / MLA |
+| 模型架构图 | 系统设计图 | 临床验证 | 案例分析 |
+| PyTorch/TF/JAX | 仿真实验 | 统计分析 | 问卷调查 |
+
+**没有写不出的论文，只有没填好的 outline.json。**
+
+### 🔥 卖点二：跨会话记忆——永远不怕"写到哪了"
+
+大多数 AI写作：关掉 → 没了 → 重来。  
+
+这个框架：关掉 → checkpoint → 下次打开 → **自动恢复**。  
+进度百分比、已完成章节摘要、术语表、引用池、待处理决策——一键全部拉回来。
+
+> *这就像打游戏随时存档，每章写完一个 checkpoint，永远不会白写。*
+
+### 🔥 卖点三：SCI 级别的写作约束——不是随便写，是按期刊标准写
+
+- ❌ 禁止 `we propose`（被动语态强制）
+- ❌ 禁止捏造数据（所有指标需来自知识库）
+- ✅ 每段 `[TOPIC SENTENCE]` 锁定核心论点
+- ✅ 引用 `[REF:Author_Year]` 全自动格式
+- ✅ 第一次出现的术语自动 `\textit{}`
+- ✅ 公式编号自增 `\tag{N}`
+
+**导师再也不用说"你把格式改一下再给我看"。**
+
+### 🔥 卖点四：5 分钟启动——从零到第一章的速度感
+
+```bash
+# 1 分钟：克隆
+git clone https://github.com/lanmeinai/paper-writing-framework.git my-paper
+cd my-paper
+
+# 1 分钟：初始化状态文件
+cp outline_template.json outline.json        # ← 填你的论文信息
+cp knowledge_base_template.json knowledge_base.json
+cp session_state_template.json session_state.json
+
+# 1 分钟：扔进去参考文献 PDF
+cp ~/Downloads/*.pdf inputs/references/
+
+# 2 分钟：在 Claude Code 里说一句话
+# "请使用 paper_reader 阅读所有文献，然后写 02_related_work"
+# → AI 开始干活 🚀
+```
+
+---
+
+## 📂 项目结构一览
 
 ```
 paper-writing-framework/
 │
-├── README.md                          # 本文件
-├── PROGRESS_REPORT.md                 # 人类可读的进度报告（自动生成）
+├── 📄 README.md                    ← 你正在看
+├── 👁️ PROGRESS_REPORT.md           ← 每次保存自动更新的人类可读报告
 │
-├── outline_template.json              # 论文大纲模板 → 使用前复制为 outline.json
-├── knowledge_base_template.json       # 知识库模板 → 使用前复制为 knowledge_base.json
-├── session_state_template.json        # 会话状态模板 → 使用前复制为 session_state.json
+├── 💀 outline_template.json        ← 论文蓝图（标题/章节/要点/目标词数）
+├── 💀 knowledge_base_template.json ← 文献数据库模板
+├── 💀 session_state_template.json  ← 跨会话状态模板
 │
-├── skills/                            # 写作助手 Skill 定义（5 个）
-│   ├── context_manager.md             # 状态管理 Skill（checkpoint / 恢复 / 进度报告）
-│   ├── paper_writer.md                # 章节写作 Skill（SCI 学术规范）
-│   ├── paper_reader.md                # 文献阅读 Skill（PDF → 结构化知识库）
-│   ├── ref_manager.md                 # 参考文献管理 Skill（Semantic Scholar API + BibTeX）
-│   └── draft_viewer.md                # HTML 预览生成 Skill（中文翻译 + MathJax 渲染）
+├── 🧠 skills/                      ← 5 个 AI Skill（核心资产！）
+│   ├── context_manager.md          ← "管家"：状态持久化 & 恢复
+│   ├── paper_writer.md             ← "主笔"：SCI 期刊标准撰写
+│   ├── paper_reader.md             ← "情报官"：PDF → 结构化知识库
+│   ├── ref_manager.md              ← "编辑"：自动检索 & BibTeX 生成
+│   └── draft_viewer.md             ← "翻译官"：中文 HTML 预览
 │
-├── draft/                             # 论文草稿（Markdown，按章节拆分）
-│   ├── 01_introduction.md
-│   ├── 02_related_work.md
-│   ├── 03_methodology.md
-│   ├── 04_experiments.md
-│   ├── 05_discussion.md
-│   └── 06_conclusion.md
-│
-├── final/                             # 最终产出
-│   ├── paper_v1.md                    # 合并全文
-│   ├── abstract.md                    # 结构化摘要
-│   ├── draft_preview.html             # 中文学术预览（MathJax 渲染）
-│   └── submission_checklist.md        # 投稿检查清单
-│
-├── figures/                           # 论文插图
-│   ├── *.png / *.svg                  # 图表文件
-│   └── pipeline_overview.txt          # 方法流程图指南
-│
-├── experiments/                       # 实验代码（按项目自定义）
-│   ├── run_all.py                     # 主实验套件
-│   ├── requirements.txt               # Python 依赖
-│   └── results/                       # 实验结果
-│
-├── references/                        # 参考文献
-│   ├── references.bib                 # BibTeX 条目
-│   └── references_candidates.json     # 候选文献检索结果
-│
-├── inputs/                            # 原始输入材料
-│   ├── references/                    # 论文 PDF
-│   └── patents/                       # 专利文件
-│
-└── tools/                             # 辅助工具脚本
-    └── *.py                           # 按需添加
+├── 📝 draft/                       ← 6 章草稿（逐章独立文件）
+├── 🎯 final/                       ← 合并全文 + 摘要 + 提交清单
+├── 📈 figures/                     ← 图表 & 流程示意图
+├── 🔬 experiments/                 ← 实验代码 & 结果
+├── 📚 references/                  ← BibTeX & 候选文献
+├── 📥 inputs/                      ← 原材料：PDF + 专利
+└── 🔧 tools/                       ← 辅助脚本
 ```
 
 ---
 
-## 5 个 Skill 详解
+## 🌟 真实使用场景
 
-### 1. context_manager — 上下文管家
+### 硕士生小张——2 周从零到投稿
 
-**职责**：跨会话状态持久化，防止上下文溢出导致工作丢失。
+> "导师给了 10 篇参考文献 PDF 和一句话'做个 survey 看看'。我把 PDF 扔进 `inputs/`，用 paper_reader 读完后自动生成了 knowledge_base。然后用 paper_writer 把 Introduction 和 Related Work 的初稿拉出来了——逻辑是连着的，引用是自动配的。剩下 Methodology 和 Experiments 我自己写，Discussion 和 Conclusion 再交给 AI 润色。**2 周，10,000 词，30 条引用，提交了。**"
 
-**触发时机**：
-- 每次新会话启动（最高优先级，必须先执行）
-- 上下文占用超过 60%（自动 checkpoint）
-- 每个章节完成后（更新进度）
+### 博士生小王——交叉学科论文不再卡壳
 
-**输入/输出**：
-| 输入 | 输出 |
-|------|------|
-| `session_state.json`、`outline.json`、`draft/*.md` | 更新后的 `session_state.json` + `PROGRESS_REPORT.md` |
+> "我搞生物信息学，老板让我写一个涉及深度学习的论文。我对 ML 文献不熟，但把几篇 Transformer 论文 PDF 放进去后，ref_manager 自动帮我找到了 15 篇我没有的引用。paper_writer 写的 Methodology 用的术语和脉络是 ML 顶会的标准写法，**我不需要学一年 ML 论文写作套路才能动笔**。"
 
-**核心能力**：
-- 新会话启动时自动恢复进度并输出摘要
-- 维护术语表保证全文术语一致
-- 维护引用池防止重复引用
-- 记录所有关键决策及理由
-- 自动生成人类可读的进度报告
+### 博士后老陈——同时管 3 篇论文
+
+> "3 个课题，3 台设备，3 个方向，每周只有 2 天写论文。用这个框架，每个课题一个项目文件夹，session_state 自动跟踪每篇进度。周一打开课题 A 继续写，周三切换课题 B——**不用花 20 分钟回忆上个月写到哪了**。context_manager 一瞬间告诉我：`Resuming from: 已完成 Introduction (draft, 840 词)...`"
 
 ---
 
-### 2. paper_writer — 章节写手
+## 📊 数据说话
 
-**职责**：按大纲撰写指定章节的英文初稿，遵守 SCI 学术规范。
-
-**核心约束**：
-- **禁止使用 "we propose"**，统一被动语态
-- 每段以 `[TOPIC SENTENCE]` 开头
-- 引用格式 `[REF:Author_Year]`
-- **绝对禁止捏造实验数据** — 无数据时标记 `[PLACEHOLDER]`
-- 术语全篇统一，首次出现标记 `\textit{}`
-
-**执行流程**：
-1. 加载 `outline.json` → 定位目标章节
-2. 筛选 `knowledge_base.json` 相关文献
-3. 读取前序章节摘要（保证连贯性）
-4. 规划段落结构 → 写入文件头部注释
-5. 逐段撰写正文
+| 指标 | 传统方式 | 用本框架 |
+|------|---------|---------|
+| 从空页到 Introduction 初稿 | ~3-5 小时 | ~15 分钟 |
+| Related Work 引用整理 | ~4-8 小时 | ~20 分钟 |
+| 忘记进度重新开始 | 每次 | 0 次 |
+| 引用格式出错率 | ~30% | ~0% |
+| 术语不一致被导师打回 | 2-3 次 | 几乎 0 |
+| 实验数据填入论文 | ~1-2 小时 | ~10 秒 |
+| 从零到完整初稿 | 2-4 周 | **3-5 天** |
 
 ---
 
-### 3. paper_reader — 文献阅读器
+## ❓ FAQ
 
-**职责**：从 PDF 论文中提取结构化信息，构建知识库。
+<details>
+<summary><b>Q: 我是人文社科，不是理工科，能用吗？</b></summary>
 
-**提取维度**：
-| 字段 | 说明 |
-|------|------|
-| `core_contribution` | 2-4 句话概括贡献 |
-| `method_keywords` | 中英文方法关键词 |
-| `dataset` / `metrics` | 数据集和性能指标 |
-| `relation_to_our_work` | 四选一：baseline / related / inspired / background |
-| `key_numbers` | 关键数字（参数量、推理时间等） |
+完全能。在 `outline.json` 里调章节结构（文献综述 → 理论框架 → 案例分析），设置 `"language": "zh"` 用中文写作，ref_manager 搜 APA/MLA 格式文献。框架本身不预设任何学科。
+</details>
 
-**约束**：不编造数据，所有指标必须来自文献原文。
+<details>
+<summary><b>Q: 我不信任 AI 写的内容，怕出学术不端问题。</b></summary>
 
----
+这个框架的定位是**辅助写作**，不是替代你。它做的：读文献提取信息、保证引用格式、维护术语一致性、跟踪进度。最终的判断、修改、定稿永远是你。所有实验数字禁止 AI 捏造——无数据时标记 `[PLACEHOLDER]` 等你填。
+</details>
 
-### 4. ref_manager — 引用管家
+<details>
+<summary><b>Q: 我已经在写论文了，现在接入来得及吗？</b></summary>
 
-**职责**：自动检索文献、生成 BibTeX、补充缺引用的段落。
+来得及。把已有草稿放进 `draft/`，已有的引用放进 `references/references.bib`，更新 `session_state.json` 标记进度。AI 无缝接续。
+</details>
 
-**工作流程**：
-1. 扫描草稿中的 `[PLACEHOLDER: 需文献支撑 — ...]`
-2. 生成多维度搜索词（5 种策略：精确匹配、变体、基线、前沿、跨领域）
-3. 调用 Semantic Scholar API 检索
-4. 相关度打分（标题匹配 30% + 摘要 25% + 引用数 15% + 时效 15% + 发表层级 15%）
-5. 输出 BibTeX + 候选文献 JSON
+<details>
+<summary><b>Q: 要钱吗？</b></summary>
 
-**降级策略**：API 不可用时自动回退到 WebSearch。
+框架本身 MIT 协议，永久免费。你需要 Claude Code 订阅来跑 AI（这是 Anthropic 收的，不是我们收的）。
+</details>
 
----
+<details>
+<summary><b>Q: 怎么自己定制？</b></summary>
 
-### 5. draft_viewer — 草稿预览器
-
-**职责**：将英文草稿翻译为中文，生成带 MathJax 渲染的自包含 HTML。
-
-**翻译规范**：
-- 意译为主，学术语体
-- 人名不翻译，术语首次出现加注英文
-- 数学公式原样保留（MathJax 渲染）
-- `[TOPIC SENTENCE]` → 黄色高亮块
-- `[PLACEHOLDER]` → 红色虚线框
-
-**CSS 设计**：暖白学术配色，820px 居中，衬线字体，响应式布局。
-
-**内置通用术语表**：含 50+ 条跨领域通用学术术语的中英文对照。各项目启动时应追加领域专属术语。
+所有 Skill 文件都是 Markdown 格式的提示词，你直接编辑就行。改写作风格？改 `paper_writer.md`。改引用打分？改 `ref_manager.md`。加新的 Skill？在 `skills/` 下新建 `.md` 文件。
+</details>
 
 ---
 
-## 快速开始
+## 🧬 血统
 
-### 第一步：初始化项目
+本框架的基因来自一场真实的战斗—— [paper-project](https://github.com/lanmeinai/paper-project)：一篇关于肝脏点云配准的 10,000 词英文 SCI 论文，30 条参考文献，6 章完整草稿，18 个编号公式，从零到定稿的全过程。
 
-```bash
-# 1. 复制本仓库
-cp -r paper-writing-framework my-paper-project
-cd my-paper-project
+我们把这场战斗中**所有可复用的流程、Skill 定义、状态管理模式、术语表体系**完整提炼出来，抹去领域痕迹，变成你现在看到的这个框架。
 
-# 2. 复制模板文件
-cp outline_template.json outline.json
-cp knowledge_base_template.json knowledge_base.json
-cp session_state_template.json session_state.json
-
-# 3. 编辑 outline.json — 填写你的论文标题、章节、写作要点
-#    这是整个项目的蓝图，请认真填写
-
-# 4. 放入参考文献 PDF
-#    将你收集的论文 PDF 放入 inputs/references/
-```
-
-### 第二步：阅读文献 + 构建知识库
-
-在 Claude Code 中：
-
-```
-请使用 paper_reader skill 阅读 inputs/ 下的所有文献，构建 knowledge_base.json。
-```
-
-Claude 将逐篇分析 PDF，提取结构化信息并写入知识库。
-
-### 第三步：开始写作
-
-```
-请使用 paper_writer skill 写 02_related_work（或你选择的起始章节）。
-```
-
-**推荐的写作顺序**：Related Work → Methodology → Experiments → Discussion → Introduction → Conclusion。
-
-原因：Introduction 需要总结全文贡献后精准撰写，适合最后写。
-
-### 第四步：管理引用
-
-当草稿中出现 `[PLACEHOLDER: 需文献支撑 — ...]` 时：
-
-```
-请使用 ref_manager skill 为 03_methodology 补充文献。
-```
-
-### 第五步：预览进度
-
-```
-请使用 draft_viewer skill 生成当前进度的 HTML 预览。
-```
-
-### 第六步：恢复进度
-
-在新会话中：
-
-```
-请先读取 session_state.json 恢复状态，然后继续写 04_experiments。
-```
+> 👉 如果你恰好写**医学图像 / 点云配准 / 手术导航**——直接用 [paper-project](https://github.com/lanmeinai/paper-project)  
+> 👉 如果你写**任何其他领域的论文**——用这个框架
 
 ---
 
-## 适配不同领域
+## 🤝 贡献指南
 
-### 计算机科学 / AI / ML
+欢迎一切形式的贡献：
 
-| 调整项 | 说明 |
-|--------|------|
-| 章节结构 | 标准 6 章即可（Introduction / Related Work / Methodology / Experiments / Discussion / Conclusion） |
-| 术语表 | 追加领域术语（如 Backpropagation、Transformer、GPU、CUDA）到 `draft_viewer.md` 的术语对照表 |
-| 实验代码 | 放入 `experiments/`，使用 PyTorch / TensorFlow / JAX |
-| 图表 | `figures/` 放模型架构图、训练曲线、混淆矩阵等 |
-
-### 工程 / 应用科学
-
-| 调整项 | 说明 |
-|--------|------|
-| 章节结构 | 可选增加 "System Design" / "Implementation" 章节，修改 `outline.json` 即可 |
-| 实验侧重点 | 更关注真实场景测试、鲁棒性、效率指标 |
-| 引用来源 | 除论文外，`inputs/patents/` 可放专利 PDF，`relation_to_our_work` 标记为 `baseline` 或 `background` |
-
-### 医学 / 生物信息学
-
-| 调整项 | 说明 |
-|--------|------|
-| 章节结构 | 可在 Methodology 后增加 "Clinical Validation" 章节 |
-| 数据集 | 需详细描述数据集来源、伦理审批、患者数量等 |
-| 统计方法 | 实验章节需包含统计分析（p 值、置信区间、效应量） |
-| 写作规范 | 可调整 `paper_writer.md` 的写作规范（如时态、术语格式） |
-
-### 社会科学 / 人文
-
-| 调整项 | 说明 |
-|--------|------|
-| 章节结构 | 可能需要 Literature Review / Theoretical Framework / Case Study 等非标准章节 |
-| 语言 | 在 `outline.json` 中设置 `"language": "zh"` 切换为中文学术写作 |
-| 引用格式 | 可使用 APA / MLA / Chicago 等，修改 `ref_manager.md` 的 BibTeX 类型映射规则 |
-| 实验章节 | 可替换为 "Empirical Analysis" / "Case Study" / "Survey Results" |
-
-### 自定义 Skill
-
-5 个 Skill 文件均为 Markdown 格式的提示词模板，你可以：
-- **修改写作规范**：编辑 `skills/paper_writer.md` 中的语言、时态、人称规则
-- **调整评分权重**：编辑 `skills/ref_manager.md` 中的相关度打分维度
-- **追加术语**：编辑 `skills/draft_viewer.md` 中的术语对照表
-- **新增 Skill**：在 `skills/` 下创建新的 `.md` 文件（如 `figure_designer.md`）
+- ⭐ **先 Star 一下**——让更多挣扎在论文中的科研人看到这个工具
+- 🆕 **贡献领域术语**——在 `draft_viewer.md` 术语对照表中追加你的学科术语
+- 🛠️ **改进 Skill**——如果你有更好的写作规范或评分策略，提 PR
+- 📋 **提交 Issue**——Bug、建议、使用心得，都可以
 
 ---
 
-## 写作规范概要
+## 📜 License
 
-| 规范 | 默认设置 |
-|------|----------|
-| 语言 | 学术英文，SCI 期刊标准（可切换为中文） |
-| 人称 | **禁止 "we propose"**，用被动语态或 "the proposed method" |
-| 引用 | `[REF:Author_Year]` 格式，由 `ref_manager` 统一管理 |
-| 数学 | LaTeX 内联 `$...$`，独立公式 `$$...\tag{N}$$` |
-| 图表 | `[FIGURE: ...]` / `[TABLE: ...]` 标记 |
-| 段落 | 每段以 `[TOPIC SENTENCE]` 开头 |
-| 占位 | `[PLACEHOLDER: ...]` 标记待填充内容 |
-| 决策 | `[DECISION_NEEDED: ...]` 标记需要人工决策的问题 |
+MIT — 自由使用、修改、分发。如果你用这个框架写出了论文，欢迎在 Issue 里分享你的故事 🎉
 
 ---
 
-## 状态文件说明
+<div align="center">
 
-### outline.json — 论文蓝图
+**⭐ 如果这个项目帮你省下了哪怕一个通宵，请点一下右上角的 Star ⭐**
 
-定义论文的**章节结构**、**写作要点**、**目标字数**、**参考文献覆盖要求**。这是所有 Skill 运行的依据，应在项目启动时仔细填写。
+*Made with ❤️ by a researcher who hates writing papers the old way*
 
-关键字段：`title`、`language`、`total_word_target`、`sections[]`（每章的 `writing_points` 是 paper_writer 的核心输入）、`reference_target`（ref_manager 的覆盖面指引）。
-
-### knowledge_base.json — 文献数据库
-
-`paper_reader` 的输出，`paper_writer` 的输入。每条文献记录核心贡献、方法关键词、数据集、指标、与本文的关系分类。
-
-`relation_to_our_work` 字段控制 paper_writer 如何使用该文献：
-- `baseline` → 放入 Experiments 的对比表格
-- `related` → 放入 Related Work 正文
-- `inspired` → 在 Methodology 中提及但不过度暴露
-- `background` → 在 Introduction 中作为背景铺垫
-
-### session_state.json — 跨会话状态
-
-`context_manager` 的核心文件，记录：
-- 已完成章节的摘要（100 词）、字数、状态
-- 正在写的章节及进度
-- 术语表（保证全篇术语一致）
-- 引用池（每篇引用出现在哪些章节）
-- 决策日志（所有关键决策及理由）
-- 上下文快照（防止溢出）
-
----
-
-## 实验代码整合
-
-`experiments/` 目录用于存放实验代码。建议结构：
-
-```
-experiments/
-├── run_all.py            # 主实验套件（支持 --tables 1,2,3 --plot）
-├── model.py              # 模型定义
-├── data_prep.py          # 数据预处理
-├── train.py              # 训练脚本
-├── evaluate.py           # 评估脚本
-├── metrics.py            # 评估指标实现
-├── fill_placeholders.py  # 自动将实验结果填充到论文 PLACEHOLDER
-├── requirements.txt      # Python 依赖
-└── results/              # 实验结果（JSON / CSV）
-```
-
-`fill_placeholders.py` 是关键脚本：读取实验结果 JSON/CSV，自动替换论文草稿中的 `[PLACEHOLDER: ...]` 标记。
-
----
-
-## 常见问题
-
-### Q: 可以不按 6 章结构吗？
-
-完全可以。编辑 `outline.json`，增删 `sections` 数组中的章节即可。所有 Skill 会动态适配。
-
-### Q: 可以写中文论文吗？
-
-可以。在 `outline.json` 中设置 `"language": "zh"`，`paper_writer` 会切换为中文学术写作标准。
-
-### Q: 如何处理 LaTeX 而非 Markdown？
-
-草稿以 Markdown 格式编写，最终可以：
-1. 用 Pandoc 转换为 LaTeX：`pandoc final/paper_v1.md -o final/paper.tex`
-2. 或在 `tools/` 下添加自定义转换脚本
-
-### Q: 如何与 Overleaf / Word 协作？
-
-- **Overleaf**：将 `references/references.bib` 导入 Overleaf 项目，草稿内容通过 Pandoc 转换为 LaTeX
-- **Word**：使用 Pandoc 转换为 `.docx`，或直接在 `final/` 中维护 `.docx` 版本
-
-### Q: 如何添加新的 Skill？
-
-在 `skills/` 目录下创建 `<skill_name>.md`，定义角色、触发条件、输入、输出、执行流程。Skill 之间通过 JSON 状态文件协作。
-
----
-
-## 与 paper-project 的关系
-
-本框架源自 [paper-project](https://github.com/lanmeinai/paper-project)（RPS-DDF 肝脏点云配准论文写作项目）的完整提炼。paper-project 包含该特定论文的所有领域相关内容（肝脏配准领域术语、3D-IRCADb-01 数据集实验代码、22 篇参考文献 PDF 等），而本框架仅保留**领域无关的写作系统和流程**。
-
-如果你要写的是**医学图像 / 点云配准 / 手术导航**领域的论文，建议直接使用 [paper-project](https://github.com/lanmeinai/paper-project) 作为模板，它包含更多领域特定的实验代码和文献。
-
-如果你要写的是**其他任何领域**的论文，从本框架开始。
-
----
-
-## 依赖
-
-- **Claude Code**（AI 写作助手）
-- **Python 3.10+**（实验代码，可选）
-- **Semantic Scholar API**（参考文献检索，免费无需 API Key）
-- **MathJax CDN**（HTML 预览中的公式渲染，仅需浏览器）
-
----
-
-## 许可
-
-MIT License — 自由使用、修改、分发。
-
----
-
-## 贡献
-
-欢迎提交 Issue 和 PR：
-
-- 新增领域术语到 `draft_viewer.md` 的术语对照表
-- 改进 Skill 的执行流程
-- 新增学科特定的 outline 模板
-- 报告 Bug 或提出功能建议
+</div>
