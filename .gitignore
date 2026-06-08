@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project state files (user-specific, not tracked)
+outline.json
+knowledge_base.json
+session_state.json
+PROGRESS_REPORT.md
+
+# Draft and final outputs (user-generated content)
+draft/*.md
+final/*.md
+final/*.html
+final/*.docx
+final/paper_v1.md
+
+# Large data files
+data/
+checkpoints/
+*.pth
+*.ckpt
+
+# Input PDFs (large, often copyrighted)
+inputs/references/*.pdf
+inputs/patents/*.pdf
+inputs/patents/*.docx
+
+# Experiment results
+experiments/results/*.json
+experiments/results/*.csv
+
+# Temp files
+~$*
+*.tmp

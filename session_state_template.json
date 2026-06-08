@@ -1,0 +1,35 @@
+{
+  "_说明": "此文件为会话状态模板。项目初始化后由 context_manager skill 自动填充和管理，无需手动编辑。首次使用时复制为 session_state.json 即可。",
+  "project_phase": "init",
+  "last_updated": "",
+  "completed_sections": [],
+  "current_section": {
+    "section_id": "",
+    "started_at": "",
+    "progress_note": ""
+  },
+  "pending_sections": [
+    { "section_id": "01_introduction", "priority": 1, "blockers": [] },
+    { "section_id": "02_related_work", "priority": 2, "blockers": [] },
+    { "section_id": "03_methodology", "priority": 3, "blockers": [] },
+    { "section_id": "04_experiments", "priority": 4, "blockers": [] },
+    { "section_id": "05_discussion", "priority": 5, "blockers": [] },
+    { "section_id": "06_conclusion", "priority": 6, "blockers": [] }
+  ],
+  "key_terms_glossary": {},
+  "citation_pool": [],
+  "word_counts": {
+    "01_introduction": 0,
+    "02_related_work": 0,
+    "03_methodology": 0,
+    "04_experiments": 0,
+    "05_discussion": 0,
+    "06_conclusion": 0,
+    "total": 0
+  },
+  "decisions_log": [],
+  "context_snapshot": {
+    "last_context_usage_pct": 0,
+    "last_checkpoint_at": ""
+  }
+}

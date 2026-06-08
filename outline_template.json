@@ -1,0 +1,122 @@
+{
+  "_说明": "此文件为论文大纲模板。请根据你的论文填写 title、sections、target_journal 等字段，完成后保存为 outline.json。",
+  "title": "Your Paper Title Here",
+  "title_short": "Short Title",
+  "target_journal": "",
+  "language": "en",
+  "total_word_target": 8000,
+  "sections": [
+    {
+      "id": "01_introduction",
+      "title": "Introduction",
+      "status": "pending",
+      "word_target": 800,
+      "writing_points": [
+        "Background and motivation: why this problem matters",
+        "Current challenges and limitations of existing approaches",
+        "Brief overview of the proposed approach",
+        "Main contributions (3-4 items)",
+        "Paper organization roadmap"
+      ],
+      "subsections": [
+        { "id": "1.1", "title": "Background and motivation", "description": "" },
+        { "id": "1.2", "title": "Problem statement", "description": "" },
+        { "id": "1.3", "title": "Contributions", "description": "" },
+        { "id": "1.4", "title": "Paper organization", "description": "" }
+      ]
+    },
+    {
+      "id": "02_related_work",
+      "title": "Related Work",
+      "status": "pending",
+      "word_target": 1000,
+      "writing_points": [
+        "Stream 1: key area of related work",
+        "Stream 2: key area of related work",
+        "Stream 3: key area of related work",
+        "Positioning: how this work differs from and improves upon prior art"
+      ],
+      "subsections": [
+        { "id": "2.1", "title": "Stream 1 title", "description": "" },
+        { "id": "2.2", "title": "Stream 2 title", "description": "" },
+        { "id": "2.3", "title": "Stream 3 title", "description": "" }
+      ]
+    },
+    {
+      "id": "03_methodology",
+      "title": "Methodology",
+      "status": "pending",
+      "word_target": 2500,
+      "writing_points": [
+        "Problem formulation with clear notation",
+        "Core method description (the key technical contribution)",
+        "Design rationale and theoretical justification",
+        "Implementation details"
+      ],
+      "subsections": [
+        { "id": "3.1", "title": "Problem Formulation", "description": "" },
+        { "id": "3.2", "title": "Core Method", "description": "" },
+        { "id": "3.3", "title": "Design Details", "description": "" }
+      ]
+    },
+    {
+      "id": "04_experiments",
+      "title": "Experiments",
+      "status": "pending",
+      "word_target": 2500,
+      "writing_points": [
+        "Dataset description and experimental setup",
+        "Baseline methods for comparison",
+        "Main quantitative results",
+        "Ablation study to validate design choices",
+        "Qualitative analysis / visualization",
+        "Sensitivity analysis on key hyperparameters"
+      ],
+      "subsections": [
+        { "id": "4.1", "title": "Experimental Setup", "description": "" },
+        { "id": "4.2", "title": "Comparison with State-of-the-art", "description": "" },
+        { "id": "4.3", "title": "Ablation Study", "description": "" },
+        { "id": "4.4", "title": "Analysis and Discussion", "description": "" }
+      ]
+    },
+    {
+      "id": "05_discussion",
+      "title": "Discussion",
+      "status": "pending",
+      "word_target": 600,
+      "writing_points": [
+        "Interpretation of key results and their significance",
+        "Limitations of the current approach",
+        "Broader implications and potential applications",
+        "Future work directions"
+      ],
+      "subsections": [
+        { "id": "5.1", "title": "Key findings and implications", "description": "" },
+        { "id": "5.2", "title": "Limitations", "description": "" },
+        { "id": "5.3", "title": "Future work", "description": "" }
+      ]
+    },
+    {
+      "id": "06_conclusion",
+      "title": "Conclusion",
+      "status": "pending",
+      "word_target": 300,
+      "writing_points": [
+        "Restate the problem and proposed approach",
+        "Summarize main contributions",
+        "Highlight key quantitative results",
+        "Broader impact statement"
+      ],
+      "subsections": []
+    }
+  ],
+  "reference_target": {
+    "count_range": "25-40",
+    "coverage_requirements": [
+      "Core method area (8-12 references)",
+      "Related approaches (8-12 references)",
+      "Theoretical foundations (5-8 references)",
+      "Evaluation and benchmarks (4-8 references)"
+    ]
+  }
+}

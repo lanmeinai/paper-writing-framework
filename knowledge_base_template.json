@@ -1,0 +1,23 @@
+{
+  "_说明": "此文件为知识库模板。请放入参考文献 PDF 后用 paper_reader skill 自动填充条目，完成后保存为 knowledge_base.json。",
+  "version": "1.0.0",
+  "last_updated": "",
+  "summary": "",
+  "entries": [
+    {
+      "_示例": "以下为一条完整的示例条目，展示所有字段的填写方式。实际使用时请删除此条并替换为真实文献条目。",
+      "id": "example-paper-id-slug",
+      "source_file": "inputs/references/example_paper.pdf",
+      "source_type": "reference",
+      "title": "Example Paper: A Novel Approach to Problem X",
+      "year": 2024,
+      "venue": "CVPR / NeurIPS / ICML / Nature / ...",
+      "core_contribution": "用 2-4 句话概括本文解决了什么问题、提出了什么方法、取得了什么效果。",
+      "method_keywords": ["keyword1", "keyword2", "中文关键词", "english keyword"],
+      "dataset": ["DatasetA", "DatasetB"],
+      "metrics": { "Metric1": "value1", "Metric2": "value2" },
+      "relation_to_our_work": "baseline",
+      "key_numbers": { "parameters": "86M", "inference_time": "10ms" }
+    }
+  ]
+}
